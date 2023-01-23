@@ -3,7 +3,7 @@ import React from "react";
 // card body with a name and a description on hover with an image
 function Card({ id, title, imageUrl, type, description, onClick }) {
     return (
-        <div className="group bg-white shadow-lg relative text-white rounded-lg p-1 m-2 w-fit h-fit" onClick={() => onClick(id)}>
+        <div className="group bg-white shadow-lg relative text-white rounded-lg p-1 m-2 w-fit h-fit" onClick={() => onClick(type, id)}>
             <img className=" rounded-lg"
                 src={imageUrl}
                 alt="movie poster" />
