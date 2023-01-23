@@ -7,7 +7,8 @@ import WatchMoviePage from './pages/WatchMoviePage'
 function App() {
   const location = useLocation()
   const [isHomePage, setIsHomePage] = useState(true)
-
+  const [isSearchActive, setIsSearchActive] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
   useEffect(() => {
     if (location.pathname === "/") {
       console.log("is home page")
@@ -21,7 +22,13 @@ function App() {
 
   return (
     <>
-      <Navbar isHomePage={isHomePage} />
+      <Navbar
+        isHomePage={isHomePage}
+        isSearchActive={isSearchActive}
+        setIsSearchActive={setIsSearchActive}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/watch-movie/:movieId" element={<WatchMoviePage />} />
