@@ -3,6 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SearchButton from '../Buttons/SearchButton';
 import CustomButton from '../Buttons/CustomButton';
+import NavActions from './NavActions';
 
 export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, searchValue, setSearchValue }) {
 
@@ -23,6 +24,7 @@ export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, 
                             searchValue={searchValue}
                             setSearchValue={(e) => setSearchValue(e.target.value)}
                         />
+                        <NavActions />
                     </div>
                 </div>
             </div>
