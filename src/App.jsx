@@ -11,10 +11,8 @@ function App() {
   const [searchValue, setSearchValue] = useState("")
   useEffect(() => {
     if (location.pathname === "/") {
-      console.log("is home page")
       setIsHomePage(true)
     } else {
-      console.log("is not home page")
       setIsHomePage(false)
     }
 

@@ -27,6 +27,8 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
         // handle escape key press
         function handleEscapeKeyPress(e) {
             if (e.key === "Escape") {
+                console.log("escape key pressed")
+                setSearchValue("")
                 setIsActive(false)
             }
         }
@@ -50,9 +52,8 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
                 hover:border-yellow-500 px-4 rounded-full text-white relative "}
                 type="text"
                 value={searchValue}
-                onChange={(e) => { setSearchValue(e) }}
+                onChange={(e) => { setSearchValue(e.target.value) }}
                 placeholder='Search for a movie...'
-                onKeyPress={(e) => { }}
             >
             </motion.input>
             <CustomButton handleClick={() => handleSearchButton()}>

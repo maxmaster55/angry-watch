@@ -22,7 +22,7 @@ export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, 
                             setIsActive={(val) => setIsSearchActive(val)}
                             isActive={isSearchActive}
                             searchValue={searchValue}
-                            setSearchValue={(e) => setSearchValue(e.target.value)}
+                            setSearchValue={(value) => setSearchValue(value)}
                         />
                         <NavActions />
                     </div>
