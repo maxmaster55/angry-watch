@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import MainGrid from '../components/Grid';
 import { useNavigate } from 'react-router-dom';

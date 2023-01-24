@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import SearchButton from './Buttons/SearchButton';
-import CustomButton from './Buttons/CustomButton';
+import SearchButton from '../Buttons/SearchButton';
+import CustomButton from '../Buttons/CustomButton';
 
 export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, searchValue, setSearchValue }) {
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/HomePage'
 import WatchMoviePage from './pages/WatchMoviePage'
 
