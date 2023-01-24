@@ -1,5 +1,9 @@
 const { app, BrowserWindow } = require('electron')
+const events = require('../src/Backend/logic/events')
+
 const path = require('path')
+
+
 
 function createWindow() {
     // Create the browser window.
@@ -48,3 +52,4 @@ app.on('activate', () => {
         createWindow()
     }
 })
+

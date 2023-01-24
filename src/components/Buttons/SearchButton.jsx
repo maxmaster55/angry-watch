@@ -3,16 +3,16 @@ import { FaSearch } from 'react-icons/fa'
 import { MdCancel } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import CustomButton from './CustomButton'
-
+const { ipcRenderer } = window.require('electron')
 
 export default function SearchButton({ isActive, setIsActive, searchValue, setSearchValue }) {
-
     function handleSearchButton() {
         if (isActive) {
             if (searchValue == "") {
                 setIsActive(false)
             } else {
                 //TODO: do something with search value
+                ipcRenderer.send('searchs', searchValue)
 
             }
         } else {
@@ -20,14 +20,9 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
         }
     }
     useEffect(() => {
-        // close search bar if search value is empty
-        if (isActive && searchValue !== "") {
-            //TODO: do something with search value
-        }
         // handle escape key press
         function handleEscapeKeyPress(e) {
             if (e.key === "Escape") {
-                console.log("escape key pressed")
                 setSearchValue("")
                 setIsActive(false)
             }
