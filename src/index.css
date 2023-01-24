@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* custom css */
+/* no selection for the whole page and drag */
+* {
+    user-select: none;
+    -webkit-user-drag: none;
+}
