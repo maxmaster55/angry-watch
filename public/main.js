@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const S = require('../src/Backend/spiders/ShahedSpider')
 
 function createWindow() {
     // Create the browser window.
@@ -15,6 +16,7 @@ function createWindow() {
     if (process.env.NODE_ENV === 'development') {
         win.setAlwaysOnTop(true);
     }
+
     win.loadURL('http://localhost:3000');
 
     // Open the DevTools.
