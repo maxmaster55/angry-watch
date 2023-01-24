@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron')
-const S = require('../src/Backend/spiders/ShahedSpider')
+const path = require('path')
 
 function createWindow() {
     // Create the browser window.
@@ -9,17 +9,21 @@ function createWindow() {
         width: 1000,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false, // false or it will not work
         },
+
     })
     win.setMenu(null);
     if (process.env.NODE_ENV === 'development') {
         win.setAlwaysOnTop(true);
     }
 
+
     win.loadURL('http://localhost:3000');
 
     // Open the DevTools.
+    win.webContents.openDevTools("detach")
 }
 
 // This method will be called when Electron has finished
