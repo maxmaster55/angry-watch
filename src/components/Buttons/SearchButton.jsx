@@ -29,7 +29,7 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
     // handle click outside and esc key
     useEffect(() => {
         function handleClickOutside(event) {
-            if (isActive && !event.target.closest('#search-input')) {
+            if (isActive && !event.target.closest('#search-input') && !event.target.closest('#search-button')) {
                 setSearchValue("")
                 setIsActive(false)
             }
@@ -67,7 +67,7 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
                 onKeyPress={(e) => { handlekeyPress(e) }}
             >
             </motion.input>
-            <CustomButton handleClick={() => handleSearchButton()}>
+            <CustomButton id="search-button" handleClick={() => handleSearchButton()}>
                 {(isActive && searchValue === "") ? <MdCancel /> : <FaSearch />}
             </CustomButton>
         </div>
