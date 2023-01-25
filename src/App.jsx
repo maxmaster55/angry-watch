@@ -43,7 +43,7 @@ function App() {
               setSearchValue={setSearchValue}
             />}
         />
-        <Route path="/results/:movies" element={<ResultsPage />} />
+        <Route path="search/:q" element={<ResultsPage />} />
         <Route path="/watch-movie/:movieId" element={<WatchMoviePage />} />
       </Routes>
     </div>

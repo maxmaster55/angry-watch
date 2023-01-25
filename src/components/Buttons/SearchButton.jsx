@@ -3,17 +3,19 @@ import { FaSearch } from 'react-icons/fa'
 import { MdCancel } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import CustomButton from './CustomButton'
+import { useNavigate } from 'react-router-dom'
 const { ipcRenderer } = window.require('electron')
 
 export default function SearchButton({ isActive, setIsActive, searchValue, setSearchValue }) {
+
+    const navigate = useNavigate()
+
     function handleSearchButton() {
         if (isActive) {
             if (searchValue == "") {
                 setIsActive(false)
             } else {
-                //TODO: do something with search value
-                ipcRenderer.send('search', searchValue)
-
+                navigate(`/search/${searchValue}`)
             }
         } else {
             setIsActive(!isActive)
@@ -25,7 +27,6 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
             handleSearchButton()
         }
     }
-
     // handle click outside and esc key
     useEffect(() => {
         function handleClickOutside(event) {
@@ -47,6 +48,8 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
             document.removeEventListener("keydown", handleEscKey);
         };
     }, [isActive, setIsActive]);
+
+
 
     return (
         <div className='flex'>

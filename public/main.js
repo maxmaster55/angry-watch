@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const events = require('../src/Backend/logic/events')
 
-const path = require('path')
 
 
 
