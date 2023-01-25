@@ -19,7 +19,7 @@ function App() {
   }, [location])
 
   return (
-    <>
+    <div className="flex-col">
       <Navbar
         isHomePage={isHomePage}
         isSearchActive={isSearchActive}
@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/watch-movie/:movieId" element={<WatchMoviePage />} />
       </Routes>
-    </>
+    </div>
   )
 }
 

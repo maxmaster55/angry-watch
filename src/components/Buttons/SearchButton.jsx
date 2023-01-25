@@ -44,7 +44,7 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 className={(!isActive ? "hidden" : "inline") + " bg-sky-900 bg-opacity-50 hover:bg-opacity-100\
-                hover:border-yellow-500 px-4 rounded-full text-white relative "}
+                hover:border-yellow-500 px-4 rounded-full text-white relative h-auto"}
                 type="text"
                 value={searchValue}
                 onChange={(e) => { setSearchValue(e.target.value) }}
