@@ -19,24 +19,39 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
             setIsActive(!isActive)
         }
     }
+    // handle enter key
+    function handlekeyPress(e) {
+        if (e.key === 'Enter') {
+            handleSearchButton()
+        }
+    }
+
+    // handle click outside and esc key
     useEffect(() => {
-        // handle escape key press
-        function handleEscapeKeyPress(e) {
-            if (e.key === "Escape") {
+        function handleClickOutside(event) {
+            if (isActive && !event.target.closest('#search-input')) {
                 setSearchValue("")
                 setIsActive(false)
             }
         }
-        window.addEventListener("keydown", handleEscapeKeyPress)
-        return () => {
-            window.removeEventListener("keydown", handleEscapeKeyPress)
+        function handleEscKey(event) {
+            if (isActive && event.key === 'Escape') {
+                setSearchValue("")
+                setIsActive(false)
+            }
         }
-
-    }, [searchValue, isActive])
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscKey);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscKey);
+        };
+    }, [isActive, setIsActive]);
 
     return (
         <div className='flex'>
             <motion.input
+                id='search-input'
                 initial={{ opacity: 0, x: 100 }}
                 animate={{
                     opacity: 1,
@@ -49,6 +64,7 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
                 value={searchValue}
                 onChange={(e) => { setSearchValue(e.target.value) }}
                 placeholder='Search for a movie...'
+                onKeyPress={(e) => { handlekeyPress(e) }}
             >
             </motion.input>
             <CustomButton handleClick={() => handleSearchButton()}>
