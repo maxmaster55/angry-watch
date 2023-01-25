@@ -12,7 +12,7 @@ export default function SearchButton({ isActive, setIsActive, searchValue, setSe
                 setIsActive(false)
             } else {
                 //TODO: do something with search value
-                ipcRenderer.send('searchs', searchValue)
+                ipcRenderer.send('search', searchValue)
 
             }
         } else {

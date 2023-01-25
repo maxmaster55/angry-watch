@@ -1,7 +1,9 @@
-
 const { ipcMain } = require('electron');
+import ShahedSpider from "../spiders/ShahedSpider";
 
-ipcMain.on("searchs", (event, arg) => {
+ipcMain.on("search", async (event, arg) => {
     console.log(arg);
-    event.reply("search-reply", "search-reply");
+    const shahedSpider = new ShahedSpider();
+    const movies = await shahedSpider.search(arg);
+    //console.log(movies);
 });

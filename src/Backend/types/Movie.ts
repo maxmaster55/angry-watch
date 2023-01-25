@@ -1,10 +1,9 @@
 
 
 export default class Movie {
-    id: number;
-    name: string;
+    title: string;
     description?: string;
-    watchUrls?: string[];
+    url: string;
     year?: number;
     duration?: number;
     genre?: string;
@@ -16,14 +15,14 @@ export default class Movie {
     createdAt?: Date;
     updatedAt?: Date;
 
-    constructor(id: number, name: string, image: string) {
-        this.id = id;
-        this.name = name;
+    constructor(title: string, image: string, url: string) {
+        this.title = title;
         this.image = image;
+        this.url = url;
     }
 
     static fromJSON(json: any): Movie {
-        const movie = new Movie(json.id, json.name, json.image);
+        const movie = new Movie(json.name, json.image, json.url);
         movie.description = json.description;
         movie.year = json.year;
         movie.duration = json.duration;
@@ -37,18 +36,9 @@ export default class Movie {
         return movie;
     }
 
-    getWatchUrls(): string[] | undefined {
-        return this.watchUrls;
-    }
-
-    setWatchUrls(watchUrls: string[]): void {
-        this.watchUrls = watchUrls;
-    }
-
     toJSON(): any {
         return {
-            id: this.id,
-            name: this.name,
+            title: this.title,
             description: this.description,
             year: this.year,
             duration: this.duration,
