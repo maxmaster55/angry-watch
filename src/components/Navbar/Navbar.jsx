@@ -18,12 +18,12 @@ export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, 
                         Angry Watch
                     </div>
                     <div className="flex self-center">
-                        <SearchButton
+                        {!isHomePage && <SearchButton
                             setIsActive={(val) => setIsSearchActive(val)}
                             isActive={isSearchActive}
                             searchValue={searchValue}
                             setSearchValue={(value) => setSearchValue(value)}
-                        />
+                        />}
                         <NavActions />
                     </div>
                 </div>
