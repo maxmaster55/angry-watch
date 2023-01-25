@@ -2,10 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 
-export default function CustomButton({ handleClick, children }) {
+export default function CustomButton({ id, handleClick, children }) {
 
     return (
         <motion.div
+            id={id}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => handleClick()}
