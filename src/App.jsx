@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/HomePage'
+import ResultsPage from './pages/ResultsPage'
 import WatchMoviePage from './pages/WatchMoviePage'
 
 
@@ -11,6 +12,7 @@ function App() {
   const [isHomePage, setIsHomePage] = useState(true)
   const [isSearchActive, setIsSearchActive] = useState(false)
   const [searchValue, setSearchValue] = useState("")
+
   useEffect(() => {
     if (location.pathname === "/") {
       setIsHomePage(true)
@@ -41,6 +43,7 @@ function App() {
               setSearchValue={setSearchValue}
             />}
         />
+        <Route path="/results/:movies" element={<ResultsPage />} />
         <Route path="/watch-movie/:movieId" element={<WatchMoviePage />} />
       </Routes>
     </div>
