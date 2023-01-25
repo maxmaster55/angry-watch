@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import SearchButton from '../components/Buttons/SearchButton';
 import { Centered } from '../components/utils/Centered';
 
-
-function HomePage() {
+//FIXME: fix the design of the search button
+function HomePage({ isHomePage, isSearchActive, setIsSearchActive, searchValue, setSearchValue }) {
 
     const navigate = useNavigate();
     function handleCardClick(type, id) {
@@ -17,7 +17,12 @@ function HomePage() {
 
     return (
         <Centered>
-            <SearchButton />
+            <SearchButton
+                searchValue={searchValue}
+                isActive={isSearchActive}
+                setSearchValue={setSearchValue}
+                setIsActive={setIsSearchActive}
+            />
         </Centered>
     )
 }

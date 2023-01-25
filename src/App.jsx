@@ -4,6 +4,8 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/HomePage'
 import WatchMoviePage from './pages/WatchMoviePage'
 
+
+//TODO: add dark mode
 function App() {
   const location = useLocation()
   const [isHomePage, setIsHomePage] = useState(true)
@@ -28,7 +30,17 @@ function App() {
         setSearchValue={setSearchValue}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              isHomePage={isHomePage}
+              isSearchActive={isSearchActive}
+              setIsSearchActive={setIsSearchActive}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />}
+        />
         <Route path="/watch-movie/:movieId" element={<WatchMoviePage />} />
       </Routes>
     </div>
