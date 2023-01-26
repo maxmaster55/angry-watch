@@ -8,22 +8,45 @@ export default function ResultsPage() {
     // recive the movies from the route
     var { q } = useParams()
     const [movies, setMovies] = useState([])
+    const [loading, setLoading] = useState(true)
 
-    //FIXME: this is not working
+    function processImages(data) {
+        //replace the string small_cover_image with medium_cover_image
+        data.forEach(movie => {
+            movie.small_cover_image = movie.small_cover_image.replace("small", "medium")
+        })
+
+        data.forEach(movie => {
+            movie.small_cover_image = "https://image.yts.rs" + movie.small_cover_image + ".jpg"
+        })
+        console.log(data[0])
+        return data
+    }
+
+
     useEffect(() => {
         console.log(q)
         ipcRenderer.invoke('search', q)
             .then(data => {
+                data = processImages(data)
                 setMovies(data)
-                console.log(data)
+                setLoading(false)
             }).finally(() => {
-                console.log(movies)
+                setLoading(false)
             })
 
     }, [q])
 
     return (
         <Grid>
+            {loading ? <h1>Loading...</h1> : movies.map(movie =>
+                <MovieCard key={movie.id}
+                    id={movie.id}
+                    title={movie.title_english}
+                    imageUrl={movie.small_cover_image}
+                    onClick={() => { }}
+                />
+            )}
         </Grid>
     );
 }
