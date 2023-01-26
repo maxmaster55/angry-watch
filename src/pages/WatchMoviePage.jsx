@@ -22,16 +22,16 @@ export default function WatchMoviePage() {
     return (
         <div>
             <h1>
-                {loading ? <LoadingIndicator /> : <MainLayout slug={slug} />}
+                {loading ? <LoadingIndicator /> : <MainLayout movie={movie} />}
             </h1>
         </div>
     );
 }
 
-function MainLayout({ slug }) {
+function MainLayout({ movie }) {
     return (
         <div className="">
-            {slug}
+            {movie.title_english}
         </div>
     )
 }

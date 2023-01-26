@@ -15,17 +15,7 @@ export default function ResultsPage() {
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
 
-    function processImages(data) {
-        //replace the string small_cover_image with medium_cover_image
-        data.forEach(movie => {
-            movie.small_cover_image = movie.small_cover_image.replace("small", "medium")
-        })
 
-        data.forEach(movie => {
-            movie.small_cover_image = "https://image.yts.rs" + movie.small_cover_image + ".jpg"
-        })
-        return data
-    }
 
     function handleCardClick(name) {
         navigate(`/movie/${name}`)
@@ -35,7 +25,6 @@ export default function ResultsPage() {
         // recive the movies from the main process
         ipcRenderer.invoke('search', q)
             .then(data => {
-                data = processImages(data)
                 setMovies(data)
                 setLoading(false)
             }).finally(() => {

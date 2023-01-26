@@ -1,14 +1,14 @@
 
 
 export default class Movie {
-    _id: string;
-    id: number;
+    _id?: string;
+    id?: number;
     imdb_code: string;
     title_english: string;
-    title_long: string;
+    title_long?: string;
     slug: string;
     year: number;
-    small_cover_image: string;
+    small_cover_image?: string;
 
 
     // to get the movies from json string

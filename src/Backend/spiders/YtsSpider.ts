@@ -2,6 +2,9 @@ import axios, { Axios } from "axios";
 import Spider from "../types/BaseSpider";
 import Movie from "../types/Movie";
 import { Error } from "../types/Errors"
+const cheerio = require("cheerio");
+
+
 
 export default class YtsSpider implements Spider {
     BaseUrl = "https://yts.rs/";
@@ -16,7 +19,9 @@ export default class YtsSpider implements Spider {
             const data = await this.makeRequest(url);
             // to convert the data to JSON
             const JSONdata = JSON.parse(JSON.stringify(data));
-            const movies: Movie[] = JSONdata.movies;
+            var movies: Movie[] = JSONdata.movies;
+            //process the images
+            movies = this.processImages(movies);
             return Promise.resolve(movies);
         } catch (error) {
             console.log("An error occured while handling the data...");
@@ -40,9 +45,31 @@ export default class YtsSpider implements Spider {
         try {
             const url = `${this.BaseUrl}movie/${name}`;
             const data = await this.makeRequest(url);
-            // to convert the data to JSON
+            const $ = cheerio.load(data);
+            const movie: Movie = {
+                title_english: $(".hidden-xs h1").text().replace("Warning! Download only with VPN...", '').trim(),
+                //find the year with regex
+                year: $("h2").text().match(/\d+/g).map(Number)[0],
+
+                imdb_code: "testcode6969",
+                slug: $("h1").text(),
+            };
+            return Promise.resolve(movie);
+
         } catch (error) {
             return Promise.reject(Error.DATA_ERROR);
         }
+    }
+
+    processImages(data) {
+        //replace the string small_cover_image with medium_cover_image
+        data.forEach(movie => {
+            movie.small_cover_image = movie.small_cover_image.replace("small", "medium")
+        })
+
+        data.forEach(movie => {
+            movie.small_cover_image = "https://image.yts.rs" + movie.small_cover_image + ".jpg"
+        })
+        return data
     }
 }
