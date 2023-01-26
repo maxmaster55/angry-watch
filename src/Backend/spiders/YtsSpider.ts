@@ -9,10 +9,6 @@ const cheerio = require("cheerio");
 export default class YtsSpider implements Spider {
     BaseUrl = "https://yts.rs/";
 
-    constructor() {
-        console.log("YTS is ready");
-    }
-
     async search(query: string): Promise<Movie[]> {
         try {
             const url = `${this.BaseUrl}api/v2/search?q=${query}`;
@@ -32,7 +28,6 @@ export default class YtsSpider implements Spider {
     async makeRequest(url: string): Promise<string> {
         try {
             const res = await axios.get(url);
-            console.log("Request to " + url + " was successful status: " + res.status);
             return res.data;
         } catch (error) {
             console.log("An error occured while making a request to the server...");
