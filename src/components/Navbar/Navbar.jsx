@@ -8,7 +8,7 @@ import NavActions from './NavActions';
 export default function Navbar({ isHomePage, isSearchActive, setIsSearchActive, searchValue, setSearchValue }) {
 
     return (
-        <div className="bg-sky-600 p-2 shadow-lg">
+        <div className="bg-sky-600 p-2 shadow-lg sticky top-0 z-10">
             <div className="container mx-auto">
                 <div className="flex justify-between">
                     {!isHomePage && <GoBackButton to="/" />}
