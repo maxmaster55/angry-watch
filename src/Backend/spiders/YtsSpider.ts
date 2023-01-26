@@ -4,7 +4,7 @@ import Movie from "../types/Movie";
 import { Error } from "../types/Errors"
 
 export default class YtsSpider implements Spider {
-    BaseUrl = "https://yts.rs/api/v2/search?q=";
+    BaseUrl = "https://yts.rs/";
 
     constructor() {
         console.log("YTS is ready");
@@ -12,7 +12,7 @@ export default class YtsSpider implements Spider {
 
     async search(query: string): Promise<Movie[]> {
         try {
-            const url = this.BaseUrl + query;
+            const url = `${this.BaseUrl}api/v2/search?q=${query}`;
             const data = await this.makeRequest(url);
             // to convert the data to JSON
             const JSONdata = JSON.parse(JSON.stringify(data));
@@ -33,6 +33,16 @@ export default class YtsSpider implements Spider {
         } catch (error) {
             console.log("An error occured while making a request to the server...");
             return Promise.reject(Error.REQUEST_ERROR);
+        }
+    }
+
+    async getMovie(name: string): Promise<Movie> {
+        try {
+            const url = `${this.BaseUrl}movie/${name}`;
+            const data = await this.makeRequest(url);
+            // to convert the data to JSON
+        } catch (error) {
+            return Promise.reject(Error.DATA_ERROR);
         }
     }
 }

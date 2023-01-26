@@ -4,6 +4,7 @@ import Movie from "./Movie"
 export default interface Spider {
     //TODO: make a function to get for the home page
     BaseUrl: string;
+    getMovie(name: string): Promise<Movie>;
     makeRequest(url: string): Promise<string>;
     search(query: string): Promise<Movie[]>;
 }
