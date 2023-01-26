@@ -44,7 +44,7 @@ function App() {
             />}
         />
         <Route path="search/:q" element={<ResultsPage />} />
-        <Route path="movie/:movieId" element={<WatchMoviePage />} />
+        <Route path="movie/:slug" element={<WatchMoviePage />} />
       </Routes>
     </div>
   )
