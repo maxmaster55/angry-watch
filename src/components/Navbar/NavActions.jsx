@@ -1,13 +1,14 @@
 import React from 'react'
 import CustomButton from '../Buttons/CustomButton'
-import { FaDownload, FaUser } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa'
+import { AiFillSetting } from 'react-icons/ai'
 
 export default function NavActions() {
     return (
         <div className='flex'>
             {/* TODO: add Download functionality */}
             <CustomButton handleClick={() => { }}>
-                <FaDownload />
+                <AiFillSetting />
             </CustomButton>
             {/* TODO: make the profile page */}
             <CustomButton handleClick={() => { }}>
