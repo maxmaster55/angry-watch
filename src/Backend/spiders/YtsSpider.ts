@@ -29,7 +29,6 @@ export default class YtsSpider implements Spider {
         }
     }
 
-
     async makeRequest(url: string): Promise<string> {
         try {
             const res = await axios.get(url);
@@ -50,12 +49,12 @@ export default class YtsSpider implements Spider {
                 title_english: $(".hidden-xs h1").text().replace("Warning! Download only with VPN...", '').trim(),
                 //find the year with regex
                 year: $("h2").text().match(/\d+/g).map(Number)[0],
-
                 imdb_code: "testcode6969",
                 slug: $("h1").text(),
+                watch_urls: this.getWatchUrls($, ".download-torrent.popup123")
             };
-            return Promise.resolve(movie);
 
+            return Promise.resolve(movie);
         } catch (error) {
             return Promise.reject(Error.DATA_ERROR);
         }
@@ -71,5 +70,21 @@ export default class YtsSpider implements Spider {
             movie.small_cover_image = "https://image.yts.rs" + movie.small_cover_image + ".jpg"
         })
         return data
+    }
+
+
+    handleWatchUrl($, str): { resolution: string, url: string } {
+        const data = {
+            resolution: $(str).text(),
+            url: $(str).attr("href")
+        }
+        return data;
+    }
+
+    getWatchUrls($, str) {
+        var movies = $(str).map((i: number, el: any) => this.handleWatchUrl($, el)).get()
+        movies = movies.filter(movie => movie.url.startsWith("magnet"))
+
+        return movies;
     }
 }

@@ -9,6 +9,8 @@ export default class Movie {
     slug: string;
     year: number;
     small_cover_image?: string;
+    watch_urls?: { resolution: string, url: string };
+
 
 
     // to get the movies from json string
