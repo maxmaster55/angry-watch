@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '../components/Grid';
 import MovieCard from '../components/Card';
+import LoadingIndicator from '../components/utils/LoadingIndicator';
+
+
 const { ipcRenderer } = window.require('electron')
 
 export default function ResultsPage() {
@@ -19,7 +22,6 @@ export default function ResultsPage() {
         data.forEach(movie => {
             movie.small_cover_image = "https://image.yts.rs" + movie.small_cover_image + ".jpg"
         })
-        console.log(data[0])
         return data
     }
 
@@ -38,16 +40,19 @@ export default function ResultsPage() {
     }, [q])
 
     return (
-        <Grid>
-            {loading ? <h1>Loading...</h1> : movies.map(movie =>
-                <MovieCard key={movie.id}
-                    id={movie.id}
-                    title={movie.title_english}
-                    imageUrl={movie.small_cover_image}
-                    onClick={() => { }}
-                />
-            )}
-        </Grid>
+        <div className="">
+            {loading ? <LoadingIndicator /> :
+                <Grid>
+                    {movies.map(movie =>
+                        <MovieCard key={movie.id}
+                            id={movie.id}
+                            title={movie.title_english}
+                            imageUrl={movie.small_cover_image}
+                            onClick={() => { }}
+                        />
+                    )}
+                </Grid>}
+        </div>
     );
 }
 

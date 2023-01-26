@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchButton from '../components/Buttons/SearchButton';
-import { Centered } from '../components/utils/Centered';
+import Centered from '../components/utils/Centered';
 
 //FIXME: fix the design of the search button
 function HomePage({ isHomePage, isSearchActive, setIsSearchActive, searchValue, setSearchValue }) {
