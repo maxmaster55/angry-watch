@@ -1,7 +1,10 @@
 const { ipcMain } = require('electron');
+import Spider from '../types/BaseSpider';
+import TestSpider from '../spiders/TestSpider';
 import YtsSpider from '../spiders/YtsSpider';
 
-const spider = new YtsSpider()
+
+const spider: Spider = new TestSpider()
 // Search event handler
 ipcMain.handle("search", async (event, arg) => {
     const results = await spider.search(arg);
