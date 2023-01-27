@@ -11,6 +11,14 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "./dist",
     "allowJs": true,
+    "paths": {
+      "@backend/*": [
+        "./src/backend/*"
+      ],
+      "@myTypes/*": [
+        "./src/backend/types/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules"

@@ -1,5 +1,5 @@
-import Spider from '../types/BaseSpider'
-import Movie from '../types/Movie';
+import Spider from '@myTypes/BaseSpider'
+import Movie from '@myTypes/Movie';
 
 
 export default class TestSpider implements Spider {
