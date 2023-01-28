@@ -9,6 +9,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": true,
     "outDir": "./dist",
     "allowJs": true,
     "paths": {
