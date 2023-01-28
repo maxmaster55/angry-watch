@@ -1,7 +1,8 @@
 import axios, { Axios } from "axios";
 import Spider from "../types/BaseSpider";
 import Movie from "../types/Movie";
-import { Error } from "../types/Errors"
+import { Error as E } from "../types/Errors"
+import WebTorrent from "webtorrent";
 const cheerio = require("cheerio");
 
 
@@ -21,7 +22,7 @@ export default class YtsSpider implements Spider {
             return Promise.resolve(movies);
         } catch (error) {
             console.log("An error occured while handling the data...");
-            return Promise.reject(Error.DATA_ERROR);
+            return Promise.reject(E.DATA_ERROR);
         }
     }
 
@@ -31,7 +32,7 @@ export default class YtsSpider implements Spider {
             return res.data;
         } catch (error) {
             console.log("An error occured while making a request to the server...");
-            return Promise.reject(Error.REQUEST_ERROR);
+            return Promise.reject(E.REQUEST_ERROR);
         }
     }
 
@@ -51,7 +52,7 @@ export default class YtsSpider implements Spider {
 
             return Promise.resolve(movie);
         } catch (error) {
-            return Promise.reject(Error.DATA_ERROR);
+            return Promise.reject(E.DATA_ERROR);
         }
     }
 
@@ -81,5 +82,9 @@ export default class YtsSpider implements Spider {
         movies = movies.filter(movie => movie.url.startsWith("magnet"))
 
         return movies;
+    }
+
+    DownlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
+        throw new Error("Method not implemented.");
     }
 }
