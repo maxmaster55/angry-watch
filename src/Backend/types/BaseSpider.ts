@@ -1,3 +1,4 @@
+import WebTorrent from "webtorrent";
 import Movie from "./Movie"
 
 // a class that makes a spider to crowal the web and get the data 
@@ -7,4 +8,5 @@ export default interface Spider {
     getMovie(name: string): Promise<Movie>;
     makeRequest(url: string): Promise<string>;
     search(query: string): Promise<Movie[]>;
+    DownlaodMovie(url: string): Promise<WebTorrent.TorrentFile>;
 }

@@ -9,7 +9,7 @@ export default class Movie {
     slug: string;
     year: number;
     small_cover_image?: string;
-    watch_urls?: { resolution: string, url: string };
+    watch_urls?: Array<{ resolution: string, url: string }>;
 
 
 
