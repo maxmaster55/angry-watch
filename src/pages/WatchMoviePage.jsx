@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import LoadingIndicator from '../components/utils/LoadingIndicator';
+import { Channels } from '../Backend/types/Channels'
 const { ipcRenderer } = window.require('electron')
 
 export default function WatchMoviePage() {
@@ -9,7 +10,7 @@ export default function WatchMoviePage() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        ipcRenderer.invoke("getMovie", slug).then(data => {
+        ipcRenderer.invoke(Channels.GET_MOVIE, slug).then(data => {
             setMovie(data)
             setLoading(false)
             console.log(data)

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Grid from '../components/Grid';
 import MovieCard from '../components/Card';
+import { Channels } from '../Backend/types/Channels'
 import LoadingIndicator from '../components/utils/LoadingIndicator';
 
 
@@ -23,7 +24,7 @@ export default function ResultsPage() {
 
     useEffect(() => {
         // recive the movies from the main process
-        ipcRenderer.invoke('search', q)
+        ipcRenderer.invoke(Channels.SEARCH, q)
             .then(data => {
                 setMovies(data)
                 setLoading(false)
