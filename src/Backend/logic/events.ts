@@ -4,7 +4,7 @@ import { Channels } from "../types/Channels"
 import TestSpider from '../spiders/TestSpider';
 import YtsSpider from '../spiders/YtsSpider';
 
-var spider: Spider;
+var spider = new TestSpider();
 
 // setup the spider from the frontend
 

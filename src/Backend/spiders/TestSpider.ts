@@ -11,6 +11,7 @@ export default class TestSpider implements Spider {
             year: 2020,
             imdb_code: 'tt1234567',
             slug: "test-movie-1-2020",
+            small_cover_image: 'https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg',
             watch_urls:
                 [
                     {
@@ -55,11 +56,9 @@ export default class TestSpider implements Spider {
         },
     ]
 
-    constructor() {
-    }
 
     async getMovie(name: string): Promise<Movie> {
-        const w = await this.wait(2)
+        const w = await this.wait(1)
         const movie = this.TestMovies.find(movie => movie.slug === name)
         return Promise.resolve(movie)
 
@@ -80,5 +79,6 @@ export default class TestSpider implements Spider {
             }, seconds * 1000);
         });
     }
+
 
 }
