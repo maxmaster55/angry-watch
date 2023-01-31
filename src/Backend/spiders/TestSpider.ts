@@ -1,10 +1,12 @@
 import Spider from '@myTypes/BaseSpider'
 import Movie from '@myTypes/Movie';
 import { Error as E } from '../types/Errors';
+var torrentStream = require('torrent-stream');
 
 export default class TestSpider implements Spider {
 
     BaseUrl: string;
+    engine
     TestMovies: Movie[] = [
         {
             title_english: 'Test Movie 1',
@@ -16,11 +18,11 @@ export default class TestSpider implements Spider {
                 [
                     {
                         resolution: ' 3D.bluray',
-                        url: 'magnet:?xt=urn:btih:D5D7DC9374B6E2F7C26B024A85DD18…r=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337'
+                        url: 'magnet:?xt=urn:btih:3A32019729D53EC621894FFC3202463D078E60E3&amp;dn=You%20People%20(2023)&amp;tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&amp;tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&amp;tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&amp;tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337'
                     },
                     {
                         resolution: ' 720p.bluray',
-                        url: 'magnet:?xt=urn:btih:44C2FAC39605DB697C045D0EB664C9…r=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337'
+                        url: 'magnet:?xt=urn:btih:3A32019729D53EC621894FFC3202463D078E60E3&amp;dn=You%20People%20(2023)&amp;tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&amp;tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&amp;tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&amp;tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337'
                     },
                     {
                         resolution: ' 1080p.bluray',
@@ -80,5 +82,10 @@ export default class TestSpider implements Spider {
         });
     }
 
-
+    download(url) {
+        this.engine = torrentStream(url)
+        this.engine.on('ready', () => {
+            this.engine.files.forEach(file => console.log('filename:', file.name))
+        })
+    }
 }

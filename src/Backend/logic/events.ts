@@ -6,10 +6,6 @@ import YtsSpider from '../spiders/YtsSpider';
 
 var spider = new TestSpider();
 
-// setup the spider from the frontend
-
-
-
 // Search event handler
 ipcMain.handle(Channels.SEARCH, async (event, arg) => {
     const results = await spider.search(arg);
@@ -23,5 +19,5 @@ ipcMain.handle(Channels.GET_MOVIE, async (event, arg) => {
 });
 
 ipcMain.handle(Channels.DOWNLOAD, (event, arg) => {
-
+    spider.download(arg)
 })

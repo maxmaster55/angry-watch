@@ -30,8 +30,14 @@ export default function WatchMoviePage() {
 }
 
 function MainLayout({ movie }) {
+    function handleClick() {
+        console.log(movie.watch_urls[0].url)
+        ipcRenderer.invoke(Channels.DOWNLOAD, movie.watch_urls[0].url)
+    }
+
+
     return (
-        <div className="">
+        <div className="" onClick={() => handleClick()}>
             {movie.title_english}
         </div>
     )
