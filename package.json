@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "electron": "npx electronmon dist/public/main.js",
     "build-elec": "tsc --watch",
-    "start": "concurrently \"npm run dev\" \"npm run build-elec\" "
+    "start": "concurrently \"npm run dev\" \"npm run build-elec\" \"npm run electron \""
   },
   "dependencies": {
     "@electron/remote": "^2.0.9",

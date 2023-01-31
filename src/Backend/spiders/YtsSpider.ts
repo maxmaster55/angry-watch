@@ -2,7 +2,6 @@ import axios, { Axios } from "axios";
 import Spider from "../types/BaseSpider";
 import Movie from "../types/Movie";
 import { Error as E } from "../types/Errors"
-import WebTorrent from "webtorrent";
 const cheerio = require("cheerio");
 
 
@@ -84,7 +83,5 @@ export default class YtsSpider implements Spider {
         return movies;
     }
 
-    downlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
-        throw new Error("Method not implemented.");
-    }
+
 }

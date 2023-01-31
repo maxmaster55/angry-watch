@@ -1,13 +1,10 @@
 import Spider from '@myTypes/BaseSpider'
 import Movie from '@myTypes/Movie';
-import WebTorrent from 'webtorrent'
 import { Error as E } from '../types/Errors';
 
 export default class TestSpider implements Spider {
 
     BaseUrl: string;
-    client: WebTorrent.Instance;
-    stream: string;
     TestMovies: Movie[] = [
         {
             title_english: 'Test Movie 1',
@@ -59,7 +56,6 @@ export default class TestSpider implements Spider {
     ]
 
     constructor() {
-        this.client = new WebTorrent()
     }
 
     async getMovie(name: string): Promise<Movie> {
@@ -85,11 +81,4 @@ export default class TestSpider implements Spider {
         });
     }
 
-    downlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
-        this.client.add(url, (torrent) => {
-            const file = torrent.files.find(file => file.name.endsWith('.mp4'))
-            return Promise.resolve(file)
-        })
-        return Promise.reject(E.UNKNOWN_ERROR)
-    }
 }
