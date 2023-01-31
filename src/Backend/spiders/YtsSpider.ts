@@ -84,7 +84,7 @@ export default class YtsSpider implements Spider {
         return movies;
     }
 
-    DownlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
+    downlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
         throw new Error("Method not implemented.");
     }
 }

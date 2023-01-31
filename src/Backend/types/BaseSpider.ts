@@ -8,5 +8,5 @@ export default interface Spider {
     getMovie(name: string): Promise<Movie>;
     makeRequest(url: string): Promise<string>;
     search(query: string): Promise<Movie[]>;
-    DownlaodMovie(url: string): Promise<WebTorrent.TorrentFile>;
+    downlaodMovie(url: string): Promise<WebTorrent.TorrentFile>;
 }

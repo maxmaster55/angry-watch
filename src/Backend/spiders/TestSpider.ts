@@ -3,7 +3,6 @@ import Movie from '@myTypes/Movie';
 import WebTorrent from 'webtorrent'
 import { Error as E } from '../types/Errors';
 
-
 export default class TestSpider implements Spider {
 
     BaseUrl: string;
@@ -86,7 +85,7 @@ export default class TestSpider implements Spider {
         });
     }
 
-    DownlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
+    downlaodMovie(url: string): Promise<WebTorrent.TorrentFile> {
         this.client.add(url, (torrent) => {
             const file = torrent.files.find(file => file.name.endsWith('.mp4'))
             return Promise.resolve(file)

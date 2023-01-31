@@ -3,8 +3,12 @@ import Spider from '../types/BaseSpider';
 import TestSpider from '../spiders/TestSpider';
 import YtsSpider from '../spiders/YtsSpider';
 
+var spider: Spider;
 
-const spider: Spider = new TestSpider()
+// setup the spider from the frontend
+
+
+
 // Search event handler
 ipcMain.handle("search", async (event, arg) => {
     const results = await spider.search(arg);
