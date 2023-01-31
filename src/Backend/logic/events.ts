@@ -1,5 +1,6 @@
 const { ipcMain } = require('electron');
 import Spider from '../types/BaseSpider';
+import { Channels } from "../types/Channels"
 import TestSpider from '../spiders/TestSpider';
 import YtsSpider from '../spiders/YtsSpider';
 
@@ -10,13 +11,17 @@ var spider: Spider;
 
 
 // Search event handler
-ipcMain.handle("search", async (event, arg) => {
+ipcMain.handle(Channels.SEARCH, async (event, arg) => {
     const results = await spider.search(arg);
     return results;
 });
 
 
-ipcMain.handle("getMovie", async (event, arg) => {
+ipcMain.handle(Channels.GET_MOVIE, async (event, arg) => {
     const result = await spider.getMovie(arg);
     return result;
 });
+
+ipcMain.handle(Channels.DOWNLOAD, (event, arg) => {
+
+})
