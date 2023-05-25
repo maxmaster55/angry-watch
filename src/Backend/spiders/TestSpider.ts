@@ -1,12 +1,13 @@
 import Spider from '@myTypes/BaseSpider'
 import Movie from '@myTypes/Movie';
+import { ReadStream } from 'original-fs';
 import { Error as E } from '../types/Errors';
 var torrentStream = require('torrent-stream');
 
 export default class TestSpider implements Spider {
 
     BaseUrl: string;
-    engine
+    engine: TorrentStream.TorrentEngine;
     TestMovies: Movie[] = [
         {
             title_english: 'Test Movie 1',
@@ -82,10 +83,16 @@ export default class TestSpider implements Spider {
         });
     }
 
-    download(url) {
+    download(url, callback: (file) => void) {
         this.engine = torrentStream(url)
         this.engine.on('ready', () => {
-            this.engine.files.forEach(file => console.log('filename:', file.name))
+            // find .mp4 file
+            this.engine.files.find(file => {
+                if (file.name.endsWith('.mp4')) {
+                    callback(file)
+                }
+            })
+
         })
     }
 }

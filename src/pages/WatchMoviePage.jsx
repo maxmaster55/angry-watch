@@ -30,15 +30,22 @@ export default function WatchMoviePage() {
 }
 
 function MainLayout({ movie }) {
+    const [stream, setStream] = useState()
     function handleClick() {
         console.log(movie.watch_urls[0].url)
-        ipcRenderer.invoke(Channels.DOWNLOAD, movie.watch_urls[0].url)
+        setStream(ipcRenderer.invoke(Channels.DOWNLOAD, movie.watch_urls[0].url))
     }
+
+    useEffect(() => {
+        if (stream) {
+            stream.then(s => console.log(s))
+        }
+    }, [stream])
 
 
     return (
         <div className="" onClick={() => handleClick()}>
-            {movie.title_english}
+            <h1>get Data</h1>
         </div>
     )
 }

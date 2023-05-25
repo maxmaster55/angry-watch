@@ -83,5 +83,8 @@ export default class YtsSpider implements Spider {
         return movies;
     }
 
+    download(url: string, callback: (file: TorrentStream.TorrentFile) => any): void {
+        throw new Error("Method not implemented.");
+    }
 
 }

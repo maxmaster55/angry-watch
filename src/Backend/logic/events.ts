@@ -3,8 +3,9 @@ import Spider from '../types/BaseSpider';
 import { Channels } from "../types/Channels"
 import TestSpider from '../spiders/TestSpider';
 import YtsSpider from '../spiders/YtsSpider';
+import { ReadStream } from 'original-fs';
 
-var spider = new TestSpider();
+var spider = new YtsSpider();
 
 // Search event handler
 ipcMain.handle(Channels.SEARCH, async (event, arg) => {
@@ -18,6 +19,9 @@ ipcMain.handle(Channels.GET_MOVIE, async (event, arg) => {
     return result;
 });
 
-ipcMain.handle(Channels.DOWNLOAD, (event, arg) => {
-    spider.download(arg)
+ipcMain.handle(Channels.DOWNLOAD, async (event, arg) => {
+    spider.download(arg, (file: TorrentStream.TorrentFile) => {
+        const stream: ReadStream = file.createReadStream()
+        return stream;
+    })
 })
